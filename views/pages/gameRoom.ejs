@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game Room</title>
+    
+    <% include ../partials/header.ejs %> 
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+    
+    
+    
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="gameHeader">
+            <h2 class="d-inline m-5">Game Lobby</h2>
+            <h3 class="d-inline m-5">ID: <%= lId %> </h3>
+            <h3 class="d-inline m-5">Lobby: <%= lName %>  </h3>
+            <h4 class="d-inline m-5" id="uName"><%= user %>  </h4>
+            <h4 class="d-inline m-5" id="pts">Points: 0  </h4>
+            <h4 class="d-inline m-5" id="countdown">  </h4>    
+                <!--Player Count?-->
+        </div>
+        <p hidden id="roomid"><%= lId %></p>
+        <div class="row pt-1">
+                <div class="col-lg-1">
+                    <div class="bg-white chat" id="userlist">   
+                    </div>
+                    <button class="btn btn-dark w-100" id="startbtn">Start Game</button>
+                </div>
+            <div class="col-lg-3">
+                <div class="bg-white chat" id="chat">
+                    <div id="innerchat">
+
+                    </div>
+                </div>
+                <input type="text" class="w-100" name="chatName" id="chatName" placeholder="Type in chat">
+                <button class="btn btn-dark w-100" id="chatbtn">Enter</button>
+            </div>
+            <div class="col-lg-8" >
+                
+                <p class="guessHeader"> Press the start game button to play!  </p>
+                
+                <div id="board">
+
+                </div>
+                <button class="btn btn-dark d-inline jscolor
+                {valueElement:color_value}" id="color">Paint Colours</button>
+                <input type="hidden" id="color_value" value="ffffff">
+                <button class="btn btn-dark d-inline" id="size1">Size 1: Thin</button>
+                <button class="btn btn-dark d-inline" id="size2">Size 2: Thick</button>
+                <button class="btn btn-dark d-inline" id="size3">Size 3: Heavy</button>
+                <button class="btn btn-dark d-inline" id="eraser">Eraser</button>
+                <button class="btn btn-dark d-inline" id="eraserAll">Clear Board</button>
+            </div>
+        </div>
+    
+    </div>
+    
+    <button id="refresh" hidden ></button>
+   
+    <script src="/js/game.js"></script>
+</body>
+</html>

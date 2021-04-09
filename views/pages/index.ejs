@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project</title>
+
+    <% include ../partials/header.ejs %>
+
+</head>
+<body>
+    <div class= container-fluid> 
+        <div class= header> 
+            <h1 class= display-1>U Draw & I Guess</h1>
+            <p>Play online with friends and people around the world!</p>
+        </div>
+        <div class= "row">
+            <div class="col-lg-4 offset-lg-1 text-center" >
+                <div class="jumbotron">
+                <h3>Log into existing Account</h3>
+                <h4><small>Have an Account already? Log in!</small></h4>
+                <% if (login){ %>
+                    <div class="alert alert-danger">
+                        <strong>Login Failed</strong> Username or Password is incorrect.
+                      </div>
+                <% } %> 
+                <form action="/lobbies" method="POST"> <!--Add action in index.js-->
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-3" name="uname" placeholder="Enter User Name" autocomplete="off">
+                        <input type="password" class="form-control mt-3" name="password" placeholder="Enter Password">
+                        <button type="submit" class="btn btn-secondary btn-lg special-btn mt-4 mb-5">Log in</button>
+                    </div>                 
+                </form>
+                <h3>Admin Login</h3>
+                <h4><small>Click here to go to admin login page</small></h4>    
+                <form action="/admin" method="POST">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-secondary btn-lg special-btn mt-4">Go to Login</button>
+                    </div>    
+                </form>  
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-2 text-center" > 
+                <div class="jumbotron">
+                    <h3>Create Account</h3>
+                    <h4><small>Don't haven an Account yet? Sign-up!</small></h4>
+                    <% if (success){ %>
+                        <div class="alert alert-danger">
+                            <strong>Sign-up Failed</strong> The passwords did not match up.
+                          </div>
+                    <% } %> 
+                    
+                    <% if (uexist){ %>
+                        <div class="alert alert-danger">
+                            <strong>Sign-up Failed</strong> Username already exists.
+                          </div>
+                    <% } %> 
+                    
+                    <% if (insert){ %>
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> Account Successfully created.
+                          </div>
+                    <% } %>       
+                    <form action="/signup" method="POST"> <!--Add action in index.js-->
+                        <div class="form-group">
+                            <input type="text" class="form-control mt-3" name="newName" placeholder="Create User Name" autocomplete="off">
+                            <input type="password" class="form-control mt-3" name="newPassword" placeholder="Create Password">
+                            <input type="password" class="form-control mt-3" name="confirmPassword" placeholder="Confirm Password">
+                            <button type="submit" class="btn btn-secondary btn-lg special-btn mt-4">Sign-up</button>
+                        </div>                 
+                    </form> 
+                </div>
+                 
+            </div> 
+        </div>
+        
+    </div>
+</body>
+</html>

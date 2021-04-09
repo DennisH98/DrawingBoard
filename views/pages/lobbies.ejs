@@ -1,0 +1,99 @@
+<!-- Change to an ejs file to display user name
+     if login in successful, go to this page    -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game Lobbies</title>
+
+    <% include ../partials/header.ejs %>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="lobbyHeader">
+            <h1 class="display-4">Game Lobbies</h1>
+            <p>Create or Join a Lobby to Start Playing!</p>
+        </div>
+     <div class="lobbyBackground p-2">  
+        <div class="row m-2 pt-2"> 
+            <div class="col-lg-2 text-center">
+                <label>Welcome: <%= user  %></label>
+            </div>
+            <div class="col-lg-2 text-center">
+                <form action="/logout" method="POST">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-dark">Log-out</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2 text-center">
+                <button class="btn btn-dark" data-toggle="modal" data-target="#createModal"> Create Lobby</button>
+            </div>       
+        </div>
+
+        <div class="modal" id="createModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+              
+                <div class="modal-header">
+                    <h3 class="modal-title">Create New Lobby</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+              
+                <div class="modal-body">
+                    <form action="createLobby" method="POST">
+                        <div class="form-group">
+                            Lobby Name
+                            <input type="text" class="form-control mb-2" name="lobbyName" placeholder="Enter Lobby Name" autocomplete="off">
+                            Maximum Players
+                            <select class="form-control w-25 mb-2" name="maxPlayers">
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                            </select>
+                            <button type="submit" class="btn btn-dark mt-2">Create New Lobby</button>
+                        </div>
+                    </form>
+                </div>
+              
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                </div>
+              
+                </div>
+            </div>
+        </div>
+    
+        <!--Example of how lobbies could work-->
+        <div class="row">
+            <div class="col-lg-12"><!--Text center?-->
+                <div class="list-group">
+                     <!--<button class="list-group-item m-1"><a href="/lobbies/1">Link</a></button> useful--> 
+                     <% lobbyResults.forEach(function(r) { %>  
+                     <div class="list-group-item mb-1">
+                                           
+                        <h6 class="d-inline">Lobby ID: <%= r.lobbyid %></h6>                 
+                        <h6 class="d-inline roomMargin">Lobby Name: <%= r.lobbyname %> </h6>           
+                        <h6 class="d-inline roomMargin">Max Players: <%= r.maxplayers %> </h6>
+                        <h6 class="d-inline roomMargin">Current Players: <%= r.currentplayers %> </h6>
+                        <h6 class="d-inline roomMargin">Created By: <%= r.createdby %> </h6>
+                        <button class="btn btn-dark float-right"><a href="/lobbies/<%-r.lobbyid %>">Join Lobby</a></button>     
+                        
+                     </div>  
+                     <% }); %>                   
+                </div>
+            </div>
+        </div>
+     </div> 
+    </div>
+
+    
+</body>
+</html>

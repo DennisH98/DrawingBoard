@@ -1,0 +1,25 @@
+.header { padding: 60px; text-align: center; color:white;font-size: 20px}
+
+.lobbyHeader{padding: 30px; text-align: center;color: white; font-size: 15px}
+
+label{color: white}
+
+.specialTable{font-size:30px; background: wheat; width: 100%; height: 100%; }
+
+body{background: #0b0924}
+
+.special-btn{width: 200px;height: 50px;}
+
+.roomMargin{margin-left: 90px}
+
+a, a:hover{color: white;text-decoration: none}
+
+.lobbyBackground{background:  #1e1c3e}
+
+.gameHeader{color: white;}
+
+.chat{height: 500px; overflow: auto }
+
+#innerchat{height: 1px;}
+
+.guessHeader{color: white;text-align: center;font-size: 17px}

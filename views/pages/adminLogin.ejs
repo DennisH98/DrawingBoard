@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Login</title>
+
+    <% include ../partials/header.ejs %>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="lobbyHeader">
+            <h1 class="display-4">Admin Login Page</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4 text-center" >
+                <div class="jumbotron">
+                    <h3>Admin Login</h3>
+                    <h4><small>Login as an Adminstrator Account!</small></h4>
+
+                    <% if (adminLogin){ %>
+                        <div class="alert alert-danger">
+                            <strong>Login to Admin Failed!</strong> Username or Password is incorrect.
+                        </div>
+                    <% } %> 
+
+                    <form action="/adminPage" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control mt-3" name="adminName" placeholder="Enter Admin Name" autocomplete="off">
+                            <input type="password" class="form-control mt-3" name="adminPassword" placeholder="Enter Admin Password">
+                            <button type="submit" class="btn btn-secondary btn-lg special-btn mt-4 mb-5">Log in</button>
+                        </div>                 
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    
+</body>
+</html>
